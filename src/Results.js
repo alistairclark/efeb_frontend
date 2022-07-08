@@ -5,7 +5,9 @@ import Result from "./Result";
 
 export default class Results extends PureComponent {
     static propTypes = {
-        results: PropTypes.array
+        results: PropTypes.array,
+        addToCart: PropTypes.func,
+        removeFromCart: PropTypes.func
     };
 
     render() {
@@ -23,6 +25,9 @@ export default class Results extends PureComponent {
                             description={result.description}
                             links={result.links}
                             slug={result.slug}
+                            addToCart={this.props.addToCart}
+                            removeFromCart={this.props.removeFromCart}
+                            object={result}
                         />
                     </div>
                 ))}

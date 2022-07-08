@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import './App.css';
 import Sidebar from "./Sidebar";
 import Results from "./Results";
+import Cart from "./Cart";
 
 export default class App extends PureComponent {
 
@@ -9,7 +10,8 @@ export default class App extends PureComponent {
     results: [],
     categories: [],
     manufacturers: [],
-    query: ""
+    query: "",
+    cartItems: []
   }
 
   fetchResults() {
@@ -49,6 +51,18 @@ export default class App extends PureComponent {
     this.setState(prevState => ({ query: event.target.value }));
   }
 
+  handleAddToCart = event => {
+    this.setState(prevState => ({
+      cartItems: prevState.cartItems.concat([event.target.value])
+    }));
+  }
+
+  handleRemoveFromCart = event => {
+    this.setState(prevState => ({
+      cartItems: prevState.cartItems.filter(element => element != element)
+    }));
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(this.state) !== JSON.stringify(prevState)) {
       this.fetchResults();
@@ -63,7 +77,8 @@ export default class App extends PureComponent {
     return (
       <div>
         <Sidebar manufacturerChange={this.handleManufacturerChange} categoriesChange={this.handleCategoriesChange} queryChange={this.handleQueryChange} />
-        <Results results={this.state.results} />
+        <Results results={this.state.results} addToCart={this.handleAddToCart} removeFromCart={this.handleRemoveFromCart} />
+        <Cart items={this.state.cartItems} />
       </div>
     );
   }
