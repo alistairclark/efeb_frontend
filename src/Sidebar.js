@@ -31,14 +31,16 @@ export default class Sidebar extends PureComponent {
         ).then(
             response => response.json()
         ).then(
-            data => this.setState({ categories: data }));
+            data => this.setState({ categories: data })
+        );
 
         fetch(
             'https://efeb-backend.herokuapp.com/api/manufacturers/', {}
         ).then(
             response => response.json()
         ).then(
-            data => this.setState({ manufacturers: data }));
+            data => this.setState({ manufacturers: data })
+        );
     }
 
     render() {
@@ -50,8 +52,7 @@ export default class Sidebar extends PureComponent {
                         <label htmlFor={category.slug}>{category.display_name}</label>
                         <input name={category.slug} onChange={this.handleCategoriesChange} type="checkbox" value={category.slug} />
                     </div>
-                ))
-                }
+                ))}
                 {this.state.manufacturers.map(manufacturer => (
                     <div key={manufacturer.slug}>
                         <label htmlFor={manufacturer.slug}>{manufacturer.display_name}</label>

@@ -7,8 +7,23 @@ export default class Results extends PureComponent {
     static propTypes = {
         results: PropTypes.array,
         addToCart: PropTypes.func,
-        removeFromCart: PropTypes.func
+        removeFromCart: PropTypes.func,
+        cartItems: PropTypes.object
     };
+
+    canAdd(result) {
+        if (result.slug in this.props.cartItems) {
+            return this.props.cartItems[result.slug].quantity < result.stock_count
+        } else if (result.stock_count == 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    canRemove(result) {
+        return result.slug in this.props.cartItems;
+    }
 
     render() {
         return (
@@ -25,7 +40,9 @@ export default class Results extends PureComponent {
                             description={result.description}
                             links={result.links}
                             slug={result.slug}
+                            canAdd={this.canAdd(result)}
                             addToCart={this.props.addToCart}
+                            canRemove={this.canRemove(result)}
                             removeFromCart={this.props.removeFromCart}
                             object={result}
                         />

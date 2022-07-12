@@ -13,7 +13,8 @@ export default class Result extends PureComponent {
         links: PropTypes.string,
         slug: PropTypes.string,
         addToCart: PropTypes.func,
-        removeFromCart: PropTypes.func
+        removeFromCart: PropTypes.func,
+        canAdd: PropTypes.bool
     };
 
 
@@ -39,8 +40,12 @@ export default class Result extends PureComponent {
                 <div>{this.props.description}</div>
                 <div>{this.props.links}</div>
                 <div>{this.props.slug}</div>
-                <button onClick={this.handleAddToCart} value={JSON.stringify(this.props.object)}>Add to cart</button>
-                <button onClick={this.handleRemoveFromCart} value={JSON.stringify(this.props.object)}>Remove from cart</button>
+                {this.props.canAdd &&
+                    <button onClick={this.handleAddToCart} value={JSON.stringify(this.props.object)}>Add to cart</button>
+                }
+                {this.props.canRemove &&
+                    <button onClick={this.handleRemoveFromCart} value={JSON.stringify(this.props.object)}>Remove from cart</button>
+                }
             </div >
         );
     }
