@@ -57,7 +57,7 @@ export default class Cart extends PureComponent {
                 })}
                 Total: £{this.calculateTotal()}
 
-                <form method="post" action="http://127.0.0.1:8000/checkout/">
+                <form method="post" action="https://efeb-backend.herokuapp.com/checkout/">
                     <input type="hidden" name="cart" value={JSON.stringify(this.props.items)} />
                     <input type="submit" value="Checkout" />
                 </form>
