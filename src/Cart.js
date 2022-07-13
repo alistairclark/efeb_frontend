@@ -29,7 +29,7 @@ export default class Cart extends PureComponent {
     canAdd(item) {
         if (item.slug in this.props.items) {
             return this.props.items[item.slug].quantity < item.stock_count
-        } else if (item.stock_count == 0) {
+        } else if (item.stock_count === 0) {
             return false;
         }
 
