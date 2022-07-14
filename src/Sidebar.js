@@ -27,7 +27,7 @@ export default class Sidebar extends PureComponent {
 
     componentDidMount() {
         fetch(
-            'https://efeb-backend.herokuapp.com/api/categories/', {}
+            `${process.env.REACT_APP_BACKEND_URL}/api/categories/`, {}
         ).then(
             response => response.json()
         ).then(
@@ -35,7 +35,7 @@ export default class Sidebar extends PureComponent {
         );
 
         fetch(
-            'https://efeb-backend.herokuapp.com/api/manufacturers/', {}
+            `${process.env.REACT_APP_BACKEND_URL}/api/manufacturers/`, {}
         ).then(
             response => response.json()
         ).then(

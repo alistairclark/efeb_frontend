@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default class Result extends PureComponent {
     static propTypes = {
@@ -35,7 +36,7 @@ export default class Result extends PureComponent {
                     <div key={category.slug}>{category.display_name}</div>
                 ))}
                 <div>{this.props.price}</div>
-                <img height="200" src={this.props.picture} />
+                <img height="200" src={this.props.picture} alt={`${this.props.display_name}`}/>
                 <div>{this.props.stock_count} in stock</div>
                 <div>{this.props.description}</div>
                 <div>{this.props.links}</div>
@@ -46,6 +47,13 @@ export default class Result extends PureComponent {
                 {this.props.canRemove &&
                     <button onClick={this.handleRemoveFromCart} value={JSON.stringify(this.props.object)}>Remove from cart</button>
                 }
+
+                <Link
+                    style={{ display: "block", margin: "1rem 0" }}
+                    to={`/products/${this.props.slug}/`}
+                >
+                    See more
+                </Link>
             </div >
         );
     }
