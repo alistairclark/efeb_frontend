@@ -6,7 +6,17 @@ import SuccessView from "./SuccessView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App(props) {
-  const [cartItems, setCartItems] = useState({});
+
+  const getCartFromLocalStorage = () => {
+    let efebCart = localStorage.getItem("efebCart");
+    if (efebCart) {
+      return JSON.parse(localStorage.getItem("efebCart"));
+    } else {
+      return []
+    }
+  }
+
+  const [cartItems, setCartItems] = useState(getCartFromLocalStorage);
 
   const handleAddToCart = event => {
     let data = JSON.parse(event.target.value)
@@ -25,6 +35,7 @@ export default function App(props) {
     }
 
     setCartItems(items);
+    localStorage.setItem("efebCart", JSON.stringify(items));
   }
 
   const handleRemoveFromCart = event => {
@@ -40,6 +51,7 @@ export default function App(props) {
       }
 
       setCartItems(items);
+      localStorage.setItem("efebCart", JSON.stringify(items));
   }
 
   return (

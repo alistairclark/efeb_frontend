@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function SuccessView() {
+    useEffect(() => {
+        localStorage.setItem("efebCart", []);
+    });
+
     return (
         <div className="component-success">
             <h1>Success!</h1>
