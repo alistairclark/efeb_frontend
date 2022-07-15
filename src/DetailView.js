@@ -4,7 +4,7 @@ import Cart from "./Cart";
 
 export default function DetailView(props) {
     const params = useParams();
-    const [data, setData] = useState(0);
+    const [data, setData] = useState({});
 
     useEffect(() => {
         fetch(

@@ -1,86 +1,57 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Results from "./Results";
 import Cart from "./Cart";
-import PropTypes from "prop-types";
 
-export default class ListView extends Component {
+export default function ListView (props) {
+    const [results, setResults] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [manufacturers, setManufacturers] = useState([]);
+    const [query, setQuery] = useState("");
 
-    state = {
-        results: [],
-        categories: [],
-        manufacturers: [],
-        query: ""
-    }
-
-    static propTypes = {
-        items: PropTypes.object,
-        addToCart: PropTypes.func,
-        removeFromCart: PropTypes.func,
+    const handleManufacturerChange = event => {
+        if (event.target.checked) {
+            setManufacturers(manufacturers.concat([event.target.value]));
+        } else {
+            setManufacturers(manufacturers.filter(element => element !== event.target.value));
+        }
     };
 
-    fetchResults() {
+    const handleCategoriesChange = event => {
+        if (event.target.checked) {
+            setCategories(categories.concat([event.target.value]));
+        } else {
+            setCategories(categories.filter(element => element !== event.target.value));
+        }
+    };
+
+    const handleQueryChange = event => {
+        setQuery(event.target.value);
+    }
+
+    useEffect(() => {
         fetch(
-            `${process.env.REACT_APP_BACKEND_URL}/api/products/?manufacturer=${this.state.manufacturers.toString()}&categories=${this.state.categories.toString()}&search=${this.state.query}`
+            `${process.env.REACT_APP_BACKEND_URL}/api/products/?manufacturer=${manufacturers.toString()}&categories=${categories.toString()}&search=${query}`
         ).then(
             response => response.json()
         ).then(
-            data => this.setState({ results: data }));
-    }
-
-    handleManufacturerChange = event => {
-        if (event.target.checked) {
-            this.setState(prevState => ({
-                manufacturers: prevState.manufacturers.concat([event.target.value])
-            }));
-        } else {
-            this.setState(prevState => ({
-                manufacturers: prevState.manufacturers.filter(element => element !== event.target.value)
-            }));
-        }
-    };
-
-    handleCategoriesChange = event => {
-        if (event.target.checked) {
-            this.setState(prevState => ({
-                categories: prevState.categories.concat([event.target.value])
-            }));
-        } else {
-            this.setState(prevState => ({
-                categories: prevState.categories.filter(element => element !== event.target.value)
-            }));
-        }
-    };
-
-    handleQueryChange = event => {
-        this.setState(prevState => ({ query: event.target.value }));
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (JSON.stringify(this.state) !== JSON.stringify(prevState)) {
-            this.fetchResults();
-        }
-    }
-
-    componentDidMount() {
-        this.fetchResults();
-    }
-
-    handleAddToCart = event => {
-        this.props.addToCart(event);
-    };
-
-    handleRemoveFromCart = event => {
-        this.props.removeFromCart(event);
-    };
-
-    render() {
-        return (
-            <div>
-                <Sidebar manufacturerChange={this.handleManufacturerChange} categoriesChange={this.handleCategoriesChange} queryChange={this.handleQueryChange} />
-                <Results results={this.state.results} addToCart={this.handleAddToCart} removeFromCart={this.handleRemoveFromCart} cartItems={this.props.items} />
-                <Cart items={this.props.items} addToCart={this.handleAddToCart} removeFromCart={this.handleRemoveFromCart} />
-            </div>
+            data => setResults(data)
         );
-    }
+    }, [categories, manufacturers, query])
+
+    const handleAddToCart = event => {
+        props.addToCart(event);
+    };
+
+    const handleRemoveFromCart = event => {
+        props.removeFromCart(event);
+    };
+
+    return (
+        <div>
+            <Sidebar manufacturerChange={handleManufacturerChange} categoriesChange={handleCategoriesChange} queryChange={handleQueryChange} />
+            <Results results={results} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} cartItems={props.items} />
+            <Cart items={props.items} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
+        </div>
+    );
 }

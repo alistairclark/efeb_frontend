@@ -1,34 +1,28 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 
-export default class Cart extends PureComponent {
-    static propTypes = {
-        items: PropTypes.object,
-        addToCart: PropTypes.func,
-        removeFromCart: PropTypes.func,
+export default function Cart (props) {
+
+    const handleAddToCart = event => {
+        props.addToCart(event);
     };
 
-    handleAddToCart = event => {
-        this.props.addToCart(event);
+    const handleRemoveFromCart = event => {
+        props.removeFromCart(event);
     };
 
-    handleRemoveFromCart = event => {
-        this.props.removeFromCart(event);
-    };
-
-    calculateTotal() {
+    const calculateTotal = () => {
         let total = 0
 
-        Object.entries(this.props.items).forEach(function ([_, item]) {
+        Object.entries(props.items).forEach(function ([_, item]) {
             total += parseFloat(item.data.price) * item.quantity;
         })
 
         return total;
     }
 
-    canAdd(item) {
-        if (item.slug in this.props.items) {
-            return this.props.items[item.slug].quantity < item.stock_count
+    const canAdd = (item) => {
+        if (item.slug in props.items) {
+            return props.items[item.slug].quantity < item.stock_count
         } else if (item.stock_count === 0) {
             return false;
         }
@@ -36,32 +30,30 @@ export default class Cart extends PureComponent {
         return true;
     }
 
-    canRemove(item) {
-        return item.slug in this.props.items;
+    const canRemove = (item) => {
+        return item.slug in props.items;
     }
 
-    render() {
-        return (
-            <div className="cart">
-                {Object.values(this.props.items).map((value) => {
-                    return (
-                        <div key={value.data.slug}>{value.data.display_name} £{value.data.price * value.quantity}
-                            {this.canAdd(value.data) &&
-                                <button onClick={this.handleAddToCart} value={JSON.stringify(value.data)}>Add to cart</button>
-                            }
-                            {this.canRemove(value.data) &&
-                                <button onClick={this.handleRemoveFromCart} value={JSON.stringify(value.data)}>Remove from cart</button>
-                            }
-                        </div>
-                    )
-                })}
-                Total: £{this.calculateTotal()}
+    return (
+        <div className="cart">
+            {Object.values(props.items).map((value) => {
+                return (
+                    <div key={value.data.slug}>{value.data.display_name} £{value.data.price * value.quantity}
+                        {canAdd(value.data) &&
+                            <button onClick={handleAddToCart} value={JSON.stringify(value.data)}>Add to cart</button>
+                        }
+                        {canRemove(value.data) &&
+                            <button onClick={handleRemoveFromCart} value={JSON.stringify(value.data)}>Remove from cart</button>
+                        }
+                    </div>
+                )
+            })}
+            Total: £{calculateTotal()}
 
-                <form method="post" action={`${process.env.REACT_APP_BACKEND_URL}/checkout/`}>
-                    <input type="hidden" name="cart" value={JSON.stringify(this.props.items)} />
-                    <input type="submit" value="Checkout" />
-                </form>
-            </div >
-        );
-    }
+            <form method="post" action={`${process.env.REACT_APP_BACKEND_URL}/checkout/`}>
+                <input type="hidden" name="cart" value={JSON.stringify(props.items)} />
+                <input type="submit" value="Checkout" />
+            </form>
+        </div >
+    );
 }
