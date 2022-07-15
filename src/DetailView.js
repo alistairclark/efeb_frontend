@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Cart from "./Cart";
 
 export default function DetailView(props) {
@@ -44,6 +44,13 @@ export default function DetailView(props) {
 
   return (
     <div>
+
+        <Link
+            style={{ display: "block", margin: "1rem 0" }}
+            to={"/"}
+        >
+            Home
+        </Link>
         <h2>{data["display_name"]}</h2>
         <div>Price: £{data["price"]}</div>
         {data.manufacturer && data.manufacturer["display_name"]}
