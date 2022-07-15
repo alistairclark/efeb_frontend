@@ -44,13 +44,13 @@ export default function Sidebar (props) {
             {categories.map(category => (
                 <div key={category.slug}>
                     <label htmlFor={category.slug}>{category.display_name}</label>
-                    <input name={category.slug} onChange={handleCategoriesChange} type="checkbox" value={category.slug} />
+                    <input checked={props.selected_categories.includes(category.slug)} name={category.slug} onChange={handleCategoriesChange} type="checkbox" value={category.slug} />
                 </div>
             ))}
             {manufacturers.map(manufacturer => (
                 <div key={manufacturer.slug}>
                     <label htmlFor={manufacturer.slug}>{manufacturer.display_name}</label>
-                    <input name={manufacturer.slug} onChange={handleManufacturerChange} type="checkbox" value={manufacturer.slug} />
+                    <input checked={props.selected_manufacturers.includes(manufacturer.slug)} name={manufacturer.slug} onChange={handleManufacturerChange} type="checkbox" value={manufacturer.slug} />
                 </div>
             ))}
         </div >
