@@ -1,5 +1,7 @@
+$blue: #BCD4E6;
+
 div {
-    font-family: "HelveticaNeue-Light", sans-serif;
+    font-family: "Rubik", sans-serif;
     font-size: 16px;
 }
 
@@ -49,7 +51,24 @@ h2 {
 }
 
 .cart {
-    background-color: #BCD4E6;
+    background-color: $blue;
     border-radius: 11px;
     padding: 10px;
+}
+
+div.addRemoveButtons {
+    padding-top: 10px;
+}
+
+button.addRemove {
+    background-color: $blue;
+    border-radius: 11px;
+    border-width: 0px;
+    margin: 5px 5px 5px 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Rubik Mono One';
+    font-size: 10px;
 }
