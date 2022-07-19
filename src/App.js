@@ -6,6 +6,8 @@ import SuccessView from "./SuccessView";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryParamProvider } from 'use-query-params';
 
+import "./App.scss";
+
 export default function App(props) {
 
   const getCartFromLocalStorage = () => {
@@ -56,17 +58,15 @@ export default function App(props) {
   }
 
   return (
-    <div>
-      <BrowserRouter>
-        <QueryParamProvider>
-          <Routes>
-            <Route path="/" element={<ListView addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} items={cartItems}/>} />
-            <Route path="/success/" element={<SuccessView />} />
-            <Route path="/cancelled/" element={<CancelledView />} />
-            <Route path="/products/:slug" element={<DetailView addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} items={cartItems}/>} />
-          </Routes>
-        </QueryParamProvider>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <QueryParamProvider>
+        <Routes>
+          <Route path="/" element={<ListView addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} items={cartItems}/>} />
+          <Route path="/success/" element={<SuccessView />} />
+          <Route path="/cancelled/" element={<CancelledView />} />
+          <Route path="/products/:slug" element={<DetailView addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} items={cartItems}/>} />
+        </Routes>
+      </QueryParamProvider>
+    </BrowserRouter>
   );
 }

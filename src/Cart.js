@@ -36,6 +36,7 @@ export default function Cart (props) {
 
     return (
         <div className="cart">
+            <h2>Cart</h2>
             {Object.values(props.items).map((value) => {
                 return (
                     <div key={value.data.slug}>{value.data.display_name} £{value.data.price * value.quantity}

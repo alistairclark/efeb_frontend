@@ -19,7 +19,7 @@ export default function Results(props) {
     return (
         <div className="component-results">
             {props.results.map(result => (
-                <div key={result.slug}>
+                <div className="result" key={result.slug}>
                     <Result
                         display_name={result.display_name}
                         manufacturer={result.manufacturer.display_name}

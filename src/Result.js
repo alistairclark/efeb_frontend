@@ -12,17 +12,16 @@ export default function Result (props) {
 
     return (
         <div className="component-result-row">
-            <div>{props.display_name}</div>
-            <div>Manufacturer: {props.manufacturer}</div>
-            {props.categories.map(category => (
-                <div key={category.slug}>{category.display_name}</div>
-            ))}
-            <div>{props.price}</div>
             <img height="200" src={props.picture} alt={`${props.display_name}`}/>
+            <h2>{props.display_name}</h2>
+            <div>£{props.price}</div>
             <div>{props.stock_count} in stock</div>
             <div>{props.description}</div>
             <div>{props.links}</div>
-            <div>{props.slug}</div>
+            <div>{props.manufacturer}</div>
+            {props.categories.map(category => (
+                <div key={category.slug}>{category.display_name}</div>
+            ))}
             {props.canAdd &&
                 <button onClick={handleAddToCart} value={JSON.stringify(props.object)}>Add to cart</button>
             }

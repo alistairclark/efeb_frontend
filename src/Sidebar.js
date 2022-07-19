@@ -39,14 +39,18 @@ export default function Sidebar (props) {
     }, [params]);
 
     return (
-        <div className="component-result-row">
+        <div className="component-sidebar">
+            <h1>EFEB</h1>
+            <h2>Search</h2>
             <input type="text" name="search" onKeyUp={handleQueryChange} />
+            <h2>Categories</h2>
             {categories.map(category => (
                 <div key={category.slug}>
                     <label htmlFor={category.slug}>{category.display_name}</label>
                     <input checked={props.selected_categories.includes(category.slug)} name={category.slug} onChange={handleCategoriesChange} type="checkbox" value={category.slug} />
                 </div>
             ))}
+            <h2>Manufacturers</h2>
             {manufacturers.map(manufacturer => (
                 <div key={manufacturer.slug}>
                     <label htmlFor={manufacturer.slug}>{manufacturer.display_name}</label>

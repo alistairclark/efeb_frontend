@@ -80,7 +80,7 @@ export default function ListView (props) {
     };
 
     return (
-        <div>
+        <div className="wrapper">
             <Sidebar manufacturerChange={handleManufacturerChange} categoriesChange={handleCategoriesChange} queryChange={handleQueryChange} selected_categories={selected_categories} selected_manufacturers={selected_manufacturers} />
             <Results results={results} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} cartItems={props.items} />
             <Cart items={props.items} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
