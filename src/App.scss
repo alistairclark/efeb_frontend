@@ -4,6 +4,7 @@ $black: #000000;
 div {
     font-family: "Rubik", sans-serif;
     font-size: 16px;
+    font-weight: 300;
 }
 
 h1 {
@@ -17,7 +18,7 @@ h2 {
 }
 
 #root {
-    width: 90%;
+    width: 95%;
     margin: auto;
     margin-top: 20px;
 }
@@ -51,59 +52,43 @@ h2 {
     grid-auto-rows: minmax(100px, auto);
 }
 
-.cart {
-    background-color: $blue;
-    border-radius: 11px;
-    padding: 10px;
-}
-
 div.addRemoveButtons {
     padding-top: 10px;
-}
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 
-button.addRemove {
-    background-color: $blue;
-    border-radius: 11px;
-    border-width: 0px;
-    margin: 5px 5px 5px 0px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-family: 'Rubik Mono One';
-    font-size: 10px;
-    width: 45%;
-}
+    button {
+        background-color: $blue;
+        border-radius: 11px;
+        border-width: 0px;
+        margin: 5px 5px 5px 0px;
+        padding: 10px;
+        font-family: 'Rubik Mono One';
+        font-size: 10px;
+    }
 
-div.cart-item {
-    padding: 10px 0px;
+    button.add {
+        grid-column: 1/2;
+        grid-row: 1;
+    }
 
-    div.cart-item-pricing {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        padding-top: 5px;
-
-        span.price {
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        span.add-button {
-            grid-column: 4 / 5;
-            grid-row: 1;
-        }
-
-        span.remove-button {
-            grid-column: 5/5;
-            grid-row: 1;
-        }
-
+    button.remove {
+        grid-column: 2/2;
+        grid-row: 1;
+        background-color: $black;
+        color: white;
     }
 }
 
 div.cart {
     width: 100%;
+    background-color: $blue;
+    border-radius: 11px;
+    padding: 10px;
+
+    .cart-total-price {
+        font-weight: 500;
+    }
 
     button.addRemove {
         background: $black;
@@ -115,27 +100,61 @@ div.cart {
         padding-bottom: 0px;
         padding-left: 0px;
         padding-right: 0px;
+        border-width: 0px;
+        border-radius: 11px;
     }
 
-    form {
-        height: 100%;
+    input.checkout {
+        width: 100%;
+        background-color: $black;
+        color: white;
+        border-width: 0px;
+        font-family: 'Rubik Mono One';
+        border-radius: 11px;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    div.cart-total {
+        padding-top: 10px;
+    }
+
+    div.cart-item {
+        padding: 10px 0px;
+
+        div.cart-item-pricing {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding-top: 5px;
+
+            span.price {
+                margin-top: auto;
+                margin-bottom: auto;
+                font-weight: 500;
+            }
+
+            span.add-button {
+                grid-column: 4 / 5;
+                grid-row: 1;
+            }
+
+            span.remove-button {
+                grid-column: 5/5;
+                grid-row: 1;
+            }
+
+        }
     }
 }
 
 
-input.checkout {
-    width: 100%;
-    background-color: $black;
-    color: white;
-    border-width: 0px;
-    font-family: 'Rubik Mono One';
-    border-radius: 11px;
-    padding: 5px;
-    margin-top: 20px;
-    position: relative;
-    bottom: 10px;
-}
-
-div.cart-total {
+div.filter-group {
     padding-top: 10px;
+    padding-bottom: 10px;
+
+    .filter-option {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }

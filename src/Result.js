@@ -23,10 +23,10 @@ export default function Result (props) {
 
             <div className="addRemoveButtons">
                 {props.canAdd &&
-                    <button className="addRemove" onClick={handleAddToCart} value={JSON.stringify(props.object)}>Add</button>
+                    <button className="add" onClick={handleAddToCart} value={JSON.stringify(props.object)}>Add</button>
                 }
                 {props.canRemove &&
-                    <button className="addRemove" onClick={handleRemoveFromCart} value={JSON.stringify(props.object)}>Remove</button>
+                    <button className="remove" onClick={handleRemoveFromCart} value={JSON.stringify(props.object)}>Remove</button>
                 }
             </div>
         </div >

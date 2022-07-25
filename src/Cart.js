@@ -38,11 +38,10 @@ export default function Cart (props) {
         <div>
         {Object.keys(props.items).length !== 0 && 
         <div className="cart">
-            <h2>Cart</h2>
             {Object.values(props.items).map((value) => {
                 return (
                     <div className="cart-item" key={value.data.slug}>
-                        <div className="cart-item-details">{value.data.display_name} (x {value.quantity})</div>
+                        <div className="cart-item-details">{value.data.display_name} (x{value.quantity})</div>
                         <div className="cart-item-pricing">
                             <span className="price">
                                 £{value.data.price * value.quantity}
@@ -61,7 +60,7 @@ export default function Cart (props) {
                     </div>
                 )
             })}
-            <div className="cart-total">Total: £{calculateTotal()}</div>
+            <div className="cart-total">Total: <span className="cart-total-price">£{calculateTotal()}</span></div>
 
             <form method="post" action={`${process.env.REACT_APP_BACKEND_URL}/checkout/`}>
                 <input type="hidden" name="cart" value={JSON.stringify(props.items)} />
