@@ -4,6 +4,7 @@ import Results from "./Results";
 import Cart from "./Cart";
 import { useQueryParam, ArrayParam, StringParam } from 'use-query-params';
 
+import "./ListView.scss";
 
 export default function ListView (props) {
     const [categories, setCategoriesQuery] = useQueryParam("categories", ArrayParam);

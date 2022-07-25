@@ -1,0 +1,69 @@
+@import 'Variables.scss';
+
+div.cart {
+    width: 100%;
+    background-color: $blue;
+    border-radius: 11px;
+    padding: 10px;
+
+    .cart-total-price {
+        font-weight: 500;
+    }
+
+    button.addRemove {
+        background: $black;
+        color: white;
+        font-family: "Rubik";
+        font-size: 20px;
+        width: 30px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        border-width: 0px;
+        border-radius: 11px;
+    }
+
+    input.checkout {
+        width: 100%;
+        background-color: $black;
+        color: white;
+        border-width: 0px;
+        font-family: 'Rubik Mono One';
+        border-radius: 11px;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    div.cart-total {
+        padding-top: 10px;
+    }
+
+    div.cart-item {
+        padding: 10px 0px;
+
+        div.cart-item-pricing {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding-top: 5px;
+
+            span.price {
+                margin-top: auto;
+                margin-bottom: auto;
+                font-weight: 500;
+            }
+
+            span.add-button {
+                grid-column: 4 / 5;
+                grid-row: 1;
+            }
+
+            span.remove-button {
+                grid-column: 5/5;
+                grid-row: 1;
+            }
+
+        }
+    }
+}

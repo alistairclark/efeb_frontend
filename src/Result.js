@@ -1,6 +1,8 @@
 import React  from "react";
 import { Link } from "react-router-dom";
 
+import "./Result.scss";
+
 export default function Result (props) {
     const handleAddToCart = event => {
         props.addToCart(event);

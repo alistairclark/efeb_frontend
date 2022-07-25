@@ -1,0 +1,29 @@
+@import 'Variables.scss';
+
+div.addRemoveButtons {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    button {
+        background-color: $blue;
+        border-radius: 11px;
+        border-width: 0px;
+        margin: 5px 5px 5px 0px;
+        padding: 10px;
+        font-family: 'Rubik Mono One';
+        font-size: 10px;
+    }
+
+    button.add {
+        grid-column: 1/2;
+        grid-row: 1;
+    }
+
+    button.remove {
+        grid-column: 2/2;
+        grid-row: 1;
+        background-color: $black;
+        color: white;
+    }
+}

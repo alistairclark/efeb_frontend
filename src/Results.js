@@ -1,6 +1,8 @@
 import React from "react";
 import Result from "./Result";
 
+import "./Results.scss";
+
 export default function Results(props) {
     const canAdd = (result) => {
         if (result.slug in props.cartItems) {
