@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import Cart from "./Cart";
 
+import "./DetailView.scss";
+
 export default function DetailView(props) {
     const params = useParams();
     const [data, setData] = useState({});
@@ -43,31 +45,36 @@ export default function DetailView(props) {
     }
 
   return (
-    <div>
+    <div className="wrapper">
+        <div className="component-sidebar">
+            <Link to={"/"}>
+                <h1>EFEB</h1>
+            </Link>
+        </div>
+        <div className="component-main">
+            <div className="product-detail">
+                <div className="product-information">
+                    <img width="300px" src={data.picture} alt={`${data.display_name}`}/>
+                    <h2>{data["display_name"]}</h2>
 
-        <Link
-            style={{ display: "block", margin: "1rem 0" }}
-            to={"/"}
-        >
-            Home
-        </Link>
-        <h2>{data["display_name"]}</h2>
-        <div>Price: £{data["price"]}</div>
-        {data.manufacturer && data.manufacturer["display_name"]}
-        {data.categories && data.categories.map(category => (
-            <div key={category.slug}>{category.display_name}</div>
-        ))}
-        <img height="200" src={data.picture} alt={`${data.display_name}`}/>
-        <div>{data.stock_count} in stock</div>
-        <div>{data.description}</div>
-        <div>{data.links}</div>
-        <div>{data.slug}</div>
-        { canAdd(data) &&
-        <button onClick={handleAddToCart} value={JSON.stringify(data)}>Add to cart</button>
-        }
-        { canRemove(data) &&
-        <button onClick={handleRemoveFromCart} value={JSON.stringify(data)}>Remove from cart</button>
-        }
+                    <div>£{data["price"]} ({data.stock_count} in stock)</div>
+                    {data.manufacturer && data.manufacturer["display_name"]}
+                    {data.categories && data.categories.map(category => (
+                        <div key={category.slug}>{category.display_name}</div>
+                    ))}
+                    { canAdd(data) &&
+                    <button onClick={handleAddToCart} value={JSON.stringify(data)}>Add</button>
+                    }
+                    { canRemove(data) &&
+                    <button onClick={handleRemoveFromCart} value={JSON.stringify(data)}>Remove</button>
+                    }
+                </div>
+                <div className="product-description">
+                    <div>{data.description}</div>
+                    <div>{data.links}</div>
+                </div>
+            </div>
+        </div>
         <Cart items={props.items} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
     </div>
   )
