@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import "./Sidebar.scss";
 
@@ -42,7 +42,10 @@ export default function Sidebar (props) {
 
     return (
         <div className="component-sidebar">
-            <h1>EFEB</h1>
+
+            <Link to={"/"}>
+                <h1>EFEB</h1>
+            </Link>
             <div className="filter-group">      
                 <h2>Search</h2>
                 <input type="text" name="search" onKeyUp={handleQueryChange} />

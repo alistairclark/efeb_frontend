@@ -19,27 +19,29 @@ export default function Results(props) {
     }
 
     return (
-        <div className="component-results">
-            {props.results.map(result => (
-                <div className="result" key={result.slug}>
-                    <Result
-                        display_name={result.display_name}
-                        manufacturer={result.manufacturer.display_name}
-                        categories={result.categories}
-                        price={result.price}
-                        picture={result.picture}
-                        stock_count={result.stock_count}
-                        description={result.description}
-                        links={result.links}
-                        slug={result.slug}
-                        canAdd={canAdd(result)}
-                        addToCart={props.addToCart}
-                        canRemove={canRemove(result)}
-                        removeFromCart={props.removeFromCart}
-                        object={result}
-                    />
-                </div>
-            ))}
+        <div className="component-main">
+            <div className="results">
+                {props.results.map(result => (
+                    <div className="result" key={result.slug}>
+                        <Result
+                            display_name={result.display_name}
+                            manufacturer={result.manufacturer.display_name}
+                            categories={result.categories}
+                            price={result.price}
+                            picture={result.picture}
+                            stock_count={result.stock_count}
+                            description={result.description}
+                            links={result.links}
+                            slug={result.slug}
+                            canAdd={canAdd(result)}
+                            addToCart={props.addToCart}
+                            canRemove={canRemove(result)}
+                            removeFromCart={props.removeFromCart}
+                            object={result}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
