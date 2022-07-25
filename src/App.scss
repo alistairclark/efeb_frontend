@@ -1,4 +1,5 @@
 $blue: #BCD4E6;
+$black: #000000;
 
 div {
     font-family: "Rubik", sans-serif;
@@ -16,7 +17,7 @@ h2 {
 }
 
 #root {
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-top: 20px;
 }
@@ -71,4 +72,70 @@ button.addRemove {
     padding-right: 10px;
     font-family: 'Rubik Mono One';
     font-size: 10px;
+    width: 45%;
+}
+
+div.cart-item {
+    padding: 10px 0px;
+
+    div.cart-item-pricing {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding-top: 5px;
+
+        span.price {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        span.add-button {
+            grid-column: 4 / 5;
+            grid-row: 1;
+        }
+
+        span.remove-button {
+            grid-column: 5/5;
+            grid-row: 1;
+        }
+
+    }
+}
+
+div.cart {
+    width: 100%;
+
+    button.addRemove {
+        background: $black;
+        color: white;
+        font-family: "Rubik";
+        font-size: 20px;
+        width: 30px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    form {
+        height: 100%;
+    }
+}
+
+
+input.checkout {
+    width: 100%;
+    background-color: $black;
+    color: white;
+    border-width: 0px;
+    font-family: 'Rubik Mono One';
+    border-radius: 11px;
+    padding: 5px;
+    margin-top: 20px;
+    position: relative;
+    bottom: 10px;
+}
+
+div.cart-total {
+    padding-top: 10px;
 }
