@@ -3,6 +3,8 @@ import CancelledView from "./CancelledView";
 import ListView from "./ListView";
 import DetailView from "./DetailView";
 import SuccessView from "./SuccessView";
+import MobileMenu from "./MobileMenu";
+import MobileFooter from "./MobileFooter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryParamProvider } from 'use-query-params';
 
@@ -60,12 +62,14 @@ export default function App(props) {
   return (
     <BrowserRouter>
       <QueryParamProvider>
+        <MobileMenu />
         <Routes>
           <Route path="/" element={<ListView addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} items={cartItems}/>} />
           <Route path="/success/" element={<SuccessView />} />
           <Route path="/cancelled/" element={<CancelledView />} />
           <Route path="/products/:slug" element={<DetailView addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} items={cartItems}/>} />
         </Routes>
+        <MobileFooter />
       </QueryParamProvider>
     </BrowserRouter>
   );

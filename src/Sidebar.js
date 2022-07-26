@@ -42,7 +42,6 @@ export default function Sidebar (props) {
 
     return (
         <div className="component-sidebar">
-
             <Link to={"/"}>
                 <h1>EFEB</h1>
             </Link>

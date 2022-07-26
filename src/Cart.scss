@@ -1,7 +1,13 @@
 @import 'Variables.scss';
 
+@media screen and (max-width: 800px) {
+    .cart {
+        display: none;
+    }
+}
+
+
 div.cart {
-    width: 100%;
     background-color: $accent;
     border-radius: 11px;
     padding: 10px;

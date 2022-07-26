@@ -1,0 +1,43 @@
+@import 'Variables.scss';
+
+.mobile-menu-wrapper {
+    width: 100%;
+    display: grid;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    height: 80px;
+
+    .mobile-menu {
+        width: 95%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        .mobile-title {
+            grid-column: 1/4;
+            grid-row: 1;
+        }
+
+        .mobile-menu-button {
+            grid-column: 4 / 4;
+            grid-row: 1;
+        }
+
+        button {
+            background-color: $black;
+            color: white;
+            border-radius: 11px;
+            border-width: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .mobile-menu {
+        display: none;
+    }
+}

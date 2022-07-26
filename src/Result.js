@@ -18,7 +18,7 @@ export default function Result (props) {
                 style={{ display: "block", margin: "1rem 0" }}
                 to={`/products/${props.slug}/`}
             >
-                <img height="200" src={props.picture} alt={`${props.display_name}`}/>
+                <img width="100%" src={props.picture} alt={`${props.display_name}`}/>
             </Link>
             <h2>{props.display_name}</h2>
             <div>£{props.price} ({props.stock_count} in stock)</div>
