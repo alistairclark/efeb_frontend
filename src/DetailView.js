@@ -55,23 +55,31 @@ export default function DetailView(props) {
             <div className="product-detail">
                 <div className="product-information">
                     <img width="300px" src={data.picture} alt={`${data.display_name}`}/>
-                    <h2>{data["display_name"]}</h2>
+                    <h1>{data["display_name"]}</h1>
 
                     <div>£{data["price"]} ({data.stock_count} in stock)</div>
-                    {data.manufacturer && data.manufacturer["display_name"]}
+                    <div>
+                        <h2>Manufacturer</h2>
+                        {data.manufacturer && data.manufacturer["display_name"]}
+                    </div>
+                    <div>
+                    <h2>Categories</h2>
                     {data.categories && data.categories.map(category => (
-                        <div key={category.slug}>{category.display_name}</div>
+                        <span key={category.slug}>{category.display_name}{category !== data.categories[data.categories.length - 1] && ", "}</span>
                     ))}
-                    { canAdd(data) &&
-                    <button onClick={handleAddToCart} value={JSON.stringify(data)}>Add</button>
-                    }
-                    { canRemove(data) &&
-                    <button onClick={handleRemoveFromCart} value={JSON.stringify(data)}>Remove</button>
-                    }
+                    </div>
+                    <div className="addRemoveButtons">
+                        { canAdd(data) &&
+                        <button className="add" onClick={handleAddToCart} value={JSON.stringify(data)}>Add</button>
+                        }
+                        { canRemove(data) &&
+                        <button className="remove" onClick={handleRemoveFromCart} value={JSON.stringify(data)}>Remove</button>
+                        }
+                    </div>
                 </div>
                 <div className="product-description">
                     <div>{data.description}</div>
-                    <div>{data.links}</div>
+                    <div dangerouslySetInnerHTML={{ __html: data.links }}></div>
                 </div>
             </div>
         </div>
